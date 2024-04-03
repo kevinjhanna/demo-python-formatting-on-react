@@ -3,19 +3,19 @@ import './App.css';
 
 function App() {
   const pyscript = `
-    for i in range(9):
-        print(i)
-
-    def func():
-        print('function works')
-    func()
   `
+
+  const handleBlur = () => {
+
+  }
   
   return (
-    <py-script
-      dangerouslySetInnerHTML={{__html: pyscript}}
-    />
-    )
-  }
+    <div>
+      <textarea id="textarea" onBlur={handleBlur} />
+      <button id="button">Run</button>
+      <div id="output"></div>
+    </div>
+  );
+}
 
 export default App;

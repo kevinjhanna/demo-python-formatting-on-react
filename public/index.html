@@ -25,8 +25,18 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
-    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
-    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.3.2/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.3.2/core.js"></script>
+    <script type="py" src="./main.py" config="./pyscript.json"></script>
+
+    <script>
+      function writeInDocument(value){
+        document.open();
+        document.write(value);
+        document.close();
+      }
+      </script>
+
 
   </head>
   <body>
