@@ -2,24 +2,20 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const pyscript = `
+    for i in range(9):
+        print(i)
+
+    def func():
+        print('function works')
+    func()
+  `
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <py-script
+      dangerouslySetInnerHTML={{__html: pyscript}}
+    />
+    )
+  }
 
 export default App;
