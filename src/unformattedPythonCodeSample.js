@@ -7,7 +7,7 @@ class bdist_rpm ( Command):
         if not changelog:
             return changelog
         new_changelog = []
-        for line in string.split(string.strip(changelog), '\n'):
+        for line in string.split(string.strip(changelog), '\\n'):
             line = string.strip(line)
             if line[0 ] =='*' :
                 new_changelog.extend ( [''  ])

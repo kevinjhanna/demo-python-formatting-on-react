@@ -68,6 +68,7 @@ function App() {
             class="border-x border-b border-gray-200 rounded-b resize-none py-1 px-2 font-mono text-xs outline-none focus:outline-none w-full"
             style={{
               height: 400,
+              whiteSpace: "pre-wrap",
             }}
             onChange={(ev) => setPythonCode(ev.target.value)}
             value={pythonCode}
