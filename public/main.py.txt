@@ -1,0 +1,11 @@
+from pyodide.ffi import create_proxy
+from js import document 
+from autopep8 import fix_code
+
+def runPython(arg):
+  document.getElementById("python-javascript-proxy").dispatchEvent()
+  # output_div = document.querySelector("#output")
+  # output_div.innerText = fix_code(arg.detail.val)
+
+function_proxy = create_proxy(runPython)
+document.getElementById("python-javascript-proxy").addEventListener("run", function_proxy)
