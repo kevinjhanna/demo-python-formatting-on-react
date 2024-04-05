@@ -4,7 +4,7 @@ import unformattedPythonCodeSample from "./unformattedPythonCodeSample.js";
 
 async function main(codeToFormat, mode) {
   try {
-    const { result, error } = await asyncRun({ codeToFormat });
+    const { result, error } = await asyncRun({ codeToFormat, mode});
     if (result) {
       return result;
     } else if (error) {
@@ -60,10 +60,17 @@ function App() {
           >
             <div
               class="text-xs text-gray-600 cursor-pointer hover:bg-gray-100 rounded-b rounded-t-none px-1 py-0.5 flex flex-row items-center gap-x-0.5"
-              onClick={format}
+              onClick={() => format("autopep8")}
             >
               <FormatIcon />
-              Format
+              Format with Autopep8
+            </div>
+            <div
+              class="text-xs text-gray-600 cursor-pointer hover:bg-gray-100 rounded-b rounded-t-none px-1 py-0.5 flex flex-row items-center gap-x-0.5"
+              onClick={() => format("ruff")}
+            >
+              <FormatIcon />
+              Format with Ruff
             </div>
             { !!elapsedTime && <div className="text-gray-600 text-xs">Elapsed time: {elapsedTime.toFixed(2)}ms</div>}
           </div>

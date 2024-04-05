@@ -1,8 +1,12 @@
-const pyodideWorker = new Worker("/webworker.js");
+// const worker = new Worker(new URL('./workers/foo.worker.ts', import.meta.url));
+
+// const formattingWorker = new Worker("./webworker.js");
+const formattingWorker = new Worker(new URL("./webworker.js", import.meta.url));
+
 
 const callbacks = {};
 
-pyodideWorker.onmessage = (event) => {
+formattingWorker.onmessage = (event) => {
   const { id, ...data } = event.data;
   const onSuccess = callbacks[id];
   delete callbacks[id];
@@ -16,7 +20,7 @@ const asyncRun = (() => {
     id = (id + 1) % Number.MAX_SAFE_INTEGER;
     return new Promise((onSuccess) => {
       callbacks[id] = onSuccess;
-      pyodideWorker.postMessage({
+      formattingWorker.postMessage({
         ...context,
         id,
       });
