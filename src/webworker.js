@@ -1,5 +1,6 @@
-importScripts("https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js");
+/* eslint-disable */ 
 import init, { format } from "@wasm-fmt/ruff_fmt";
+importScripts("https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js");
 
 const pythonScript = `
     from autopep8 import fix_code
