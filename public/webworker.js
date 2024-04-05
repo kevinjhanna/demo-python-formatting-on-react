@@ -23,9 +23,12 @@ self.onmessage = async (event) => {
   }
 
   try {
+    const start = performance.now();
     await self.pyodide.loadPackagesFromImports(pythonScript);
     let formattedCode = await self.pyodide.runPythonAsync(pythonScript);
-    self.postMessage({ result: { formattedCode }, id });
+    const end = performance.now();
+    const elapsedTime = end - start;
+    self.postMessage({ result: { formattedCode, elapsedTime }, id });
   } catch (error) {
     self.postMessage({ error: error.message, id });
   }

@@ -549,10 +549,6 @@ video {
   margin-bottom: 0.5rem;
 }
 
-.block {
-  display: block;
-}
-
 .flex {
   display: flex;
 }
@@ -569,8 +565,8 @@ video {
   width: 100%;
 }
 
-.max-w-\[420px\] {
-  max-width: 420px;
+.max-w-\[720px\] {
+  max-width: 720px;
 }
 
 .cursor-pointer {
@@ -603,6 +599,10 @@ video {
 
 .gap-x-0\.5 {
   column-gap: 0.125rem;
+}
+
+.gap-x-2 {
+  column-gap: 0.5rem;
 }
 
 .rounded-b {

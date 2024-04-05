@@ -2,7 +2,7 @@ import { useState } from "react";
 import { asyncRun } from "./py-worker";
 import unformattedPythonCodeSample from "./unformattedPythonCodeSample.js";
 
-async function main(codeToFormat) {
+async function main(codeToFormat, mode) {
   try {
     const { result, error } = await asyncRun({ codeToFormat });
     if (result) {
@@ -38,19 +38,21 @@ const FormatIcon = () => (
 
 function App() {
   const [pythonCode, setPythonCode] = useState(unformattedPythonCodeSample);
+  const [elapsedTime, setElapsedTime] = useState(null);
 
-  const format = async () => {
-    const { formattedCode } = await main(pythonCode);
+  const format = async (mode) => {
+    const { formattedCode, elapsedTime } = await main(pythonCode, mode);
     setPythonCode(formattedCode);
+    setElapsedTime(elapsedTime);
   };
 
   return (
     <div class="flex items-center justify-center w-100 h-screen">
       <main class="bg-white w-4/5 max-w-[720px]">
         <p class="text-gray-600 text-sm font-semibold mb-2">Python code</p>
-        <div class="CodeWrapper">
+        <div>
           <div
-            class="border border-gray-200 w-full rounded-t px-1 py-1 flex flex-row items-center justify-start"
+            class="border border-gray-200 w-full rounded-t px-1 py-1 flex flex-row items-center justify-start gap-x-2"
             style={{
               top: 0,
               left: 0,
@@ -63,6 +65,7 @@ function App() {
               <FormatIcon />
               Format
             </div>
+            { !!elapsedTime && <div className="text-gray-600 text-xs">Elapsed time: {elapsedTime.toFixed(2)}ms</div>}
           </div>
           <textarea
             class="border-x border-b border-gray-200 rounded-b resize-none py-1 px-2 font-mono text-xs outline-none focus:outline-none w-full"
