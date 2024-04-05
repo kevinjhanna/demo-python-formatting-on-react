@@ -46,33 +46,48 @@ function App() {
     setElapsedTime(elapsedTime);
   };
 
+  const resetCode = () => {
+    setPythonCode(unformattedPythonCodeSample);
+  }
+
   return (
     <div class="flex items-center justify-center w-100 h-screen">
       <main class="bg-white w-4/5 max-w-[720px]">
         <p class="text-gray-600 text-sm font-semibold mb-2">Python code</p>
         <div>
-          <div
-            class="border border-gray-200 w-full rounded-t px-1 py-1 flex flex-row items-center justify-start gap-x-2"
-            style={{
-              top: 0,
-              left: 0,
-            }}
-          >
+          <div class="border border-gray-200 w-full rounded-t px-1 py-1 flex flex-row items-center justify-between gap-x-2">
             <div
-              class="text-xs text-gray-600 cursor-pointer hover:bg-gray-100 rounded-b rounded-t-none px-1 py-0.5 flex flex-row items-center gap-x-0.5"
-              onClick={() => format("autopep8")}
+              className="flex gap-x-2 items-center"
             >
-              <FormatIcon />
-              Format with Autopep8
+              <div
+                class="text-xs text-gray-600 cursor-pointer hover:bg-gray-100 rounded-b rounded-t-none px-1 py-0.5 flex flex-row items-center gap-x-0.5"
+                onClick={() => format("autopep8")}
+              >
+                <FormatIcon />
+                Format with Autopep8
+              </div>
+              <div
+                class="text-xs text-gray-600 cursor-pointer hover:bg-gray-100 rounded-b rounded-t-none px-1 py-0.5 flex flex-row items-center gap-x-0.5"
+                onClick={() => format("ruff")}
+              >
+                <FormatIcon />
+                Format with Ruff
+              </div>
+              {!!elapsedTime && (
+                <div className="text-gray-600 text-xs">
+                  Elapsed time: {elapsedTime.toFixed(2)}ms
+                </div>
+              )}
             </div>
-            <div
-              class="text-xs text-gray-600 cursor-pointer hover:bg-gray-100 rounded-b rounded-t-none px-1 py-0.5 flex flex-row items-center gap-x-0.5"
-              onClick={() => format("ruff")}
-            >
-              <FormatIcon />
-              Format with Ruff
+            <div>
+              <div
+                class="text-xs text-gray-600 cursor-pointer hover:bg-gray-100 rounded-b rounded-t-none px-1 py-0.5 flex flex-row items-center gap-x-0.5"
+                onClick={resetCode}
+              >
+                <FormatIcon />
+                Reset code
+              </div>
             </div>
-            { !!elapsedTime && <div className="text-gray-600 text-xs">Elapsed time: {elapsedTime.toFixed(2)}ms</div>}
           </div>
           <textarea
             class="border-x border-b border-gray-200 rounded-b resize-none py-1 px-2 font-mono text-xs outline-none focus:outline-none w-full"
